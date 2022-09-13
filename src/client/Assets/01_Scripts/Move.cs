@@ -21,6 +21,8 @@ public class Move : MonoBehaviour
     private void Update()
     {
         rigidbody2d.velocity = (new Vector2(Input.GetAxis("Horizontal"), 0)) * speed;
+
+        // 조명, 바닥, 카메라 이동
         floor.transform.position = new Vector2(transform.position.x, floor.transform.position.y);
         light2D.transform.position = new Vector2(transform.position.x, light2D.transform.position.y);
         cam.transform.position = new Vector3(transform.position.x, cam.transform.position.y, -10);
