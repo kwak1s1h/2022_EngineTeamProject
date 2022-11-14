@@ -26,7 +26,6 @@ public class AgentInput : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        if(x != 0 || y != 0)
         OnMovementInput?.Invoke(new Vector2(x, y));
     }
 }

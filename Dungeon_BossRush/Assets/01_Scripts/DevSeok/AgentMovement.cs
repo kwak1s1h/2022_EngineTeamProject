@@ -6,6 +6,7 @@ using UnityEngine;
 public class AgentMovement : MonoBehaviour
 {
     private Rigidbody2D _rigid;
+    [SerializeField] private float _speed;
 
     private void Awake()
     {
@@ -19,6 +20,6 @@ public class AgentMovement : MonoBehaviour
 
     public void ChangeVelocity(Vector2 input)
     {
-        Debug.Log($"x:{input.x}, y:{input.y}");
+        _rigid.velocity = input.normalized * _speed;
     }
 }
