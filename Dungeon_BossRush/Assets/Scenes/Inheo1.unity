@@ -4132,7 +4132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bullet: {fileID: 8871196029326638021, guid: c8ae58df03d1ea542bb951544b682a5e, type: 3}
   _pos: {fileID: 881051112}
-  _coolTime: 0
+  _coolTime: 0.1
   _renderer: {fileID: 1594689795}
 --- !u!1 &898854479
 GameObject:

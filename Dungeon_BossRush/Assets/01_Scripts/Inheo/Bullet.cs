@@ -19,9 +19,13 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Boss"))
+        //if (collision.gameObject.CompareTag("Boss"))
+        //{
+        //    collision.GetComponent<BossHP>().TakeDamage(_bulletDMG);
+        //    Destroy(gameObject);
+        //}
+        if (collision.gameObject.layer == 9)
         {
-            collision.GetComponent<BossHP>().TakeDamage(_bulletDMG);
             Destroy(gameObject);
         }
     }
