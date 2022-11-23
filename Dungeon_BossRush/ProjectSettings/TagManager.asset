@@ -53,3 +53,6 @@ TagManager:
   - name: Forward
     uniqueID: 755917985
     locked: 0
+  - name: Boss
+    uniqueID: 3546218151
+    locked: 0
