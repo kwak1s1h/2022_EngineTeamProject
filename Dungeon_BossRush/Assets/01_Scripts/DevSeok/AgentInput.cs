@@ -11,17 +11,25 @@ public class AgentInput : MonoBehaviour
     public UnityEvent<Vector2> OnMovementInput;
     public UnityEvent OnFireButtonInput;
     public UnityEvent<Vector2> OnMousePositionChange;
+    public UnityEvent OnDashButtonInput;
 
     private void Update()
     {
         MoveInput();
         FireInput();
         GetMousePos();
+        DashInput();
+    }
+
+    private void DashInput()
+    {
+        if(Input.GetMouseButtonDown(1))
+        OnDashButtonInput?.Invoke();
     }
 
     private void FireInput()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0))
         OnFireButtonInput?.Invoke();
     }
 
