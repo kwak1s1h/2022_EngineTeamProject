@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class AgentMovement : MonoBehaviour
 {
-    private AgentInput _agentInput;
-
     private Rigidbody2D _rigid;
     [SerializeField] private float _speed;
 
