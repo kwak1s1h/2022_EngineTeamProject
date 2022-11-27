@@ -5,22 +5,25 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class AgentMovement : MonoBehaviour
 {
+    private AgentInput _agentInput;
+
     private Rigidbody2D _rigid;
     [SerializeField] private float _speed;
 
     [SerializeField] private SpriteRenderer _playerRenderer;
 
-    private bool canDash = true;
-    private bool isDashing;
-    private float dashPower = 24f;
-    private float dashTime = 0.5f;
-    private float dashCoolTime = 1f;
+    private bool _canDash = true;
+    private bool _isDashing;
+    [SerializeField] private float _dashSpeed;
+    private float _dashTime = 0.3f;
+    private float _dashCoolTime = 1f;
 
-    [SerializeField] private TrailRenderer tr;
+    private float _curSpeed;
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
+        _curSpeed = _speed;
     }
 
     void Update()
@@ -30,7 +33,7 @@ public class AgentMovement : MonoBehaviour
 
     public void ChangeVelocity(Vector2 input)
     {
-        _rigid.velocity = input.normalized * _speed;
+        _rigid.velocity = input.normalized * _curSpeed;
     }
 
     public void FlipAgent(Vector2 mousePos)
@@ -40,21 +43,25 @@ public class AgentMovement : MonoBehaviour
 
     public void IsDash()
     {
-        StartCoroutine(Dash());
+        if (_canDash)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     private IEnumerator Dash()
     {
         GetComponent<CapsuleCollider2D>().enabled = false;
-        canDash = false;
-        isDashing = true;
+        _canDash = false;
+        _isDashing = true;
         //dashing
-        tr.emitting = true;
-        yield return new WaitForSeconds(dashTime);
-        tr.emitting = false;
-        isDashing = false;
+        _curSpeed = _dashSpeed;
+        yield return new WaitForSeconds(0.2f);
+        _curSpeed = _speed;
+        yield return new WaitForSeconds(_dashTime);
+        _isDashing = false;
         GetComponent<CapsuleCollider2D>().enabled = true;
-        yield return new WaitForSeconds(dashCoolTime);
-        canDash = true;
+        yield return new WaitForSeconds(_dashCoolTime);
+        _canDash = true;
     }
 }

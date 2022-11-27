@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _bulletDMG;
+    [SerializeField] Vector3 direction;
 
     private void Start()
     {
@@ -19,11 +20,16 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.gameObject.CompareTag("Boss"))
-        //{
-        //    collision.GetComponent<BossHP>().TakeDamage(_bulletDMG);
-        //    Destroy(gameObject);
-        //}
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            collision.GetComponent<GolemBossHP>().TakeDamage(_bulletDMG);
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("SamuraiBoss"))
+        {
+            collision.GetComponent<SamuraiBossHP>().TakeDamage(_bulletDMG);
+            Destroy(gameObject);
+        }
         if (collision.gameObject.layer == 9)
         {
             Destroy(gameObject);
